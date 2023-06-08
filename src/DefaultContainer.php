@@ -4,13 +4,11 @@ namespace Lubed\Container;
 
 use ArrayAccess;
 use Closure;
-use LogicException;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
-use TypeError;
-use Lubed\Supports\PSR\Container as ContainerContract;
+use Lubed\Supports\PSR\ContainerInterface;
 
 class DefaultContainer implements ArrayAccess, Container
 {
