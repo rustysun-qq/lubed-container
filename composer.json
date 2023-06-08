@@ -24,9 +24,7 @@
             "Lubed\\Container\\": "src/"
         }
     },
-    "extra": {
-
-    },
+    "extra": { },
     "config": {
         "sort-packages": true
     },

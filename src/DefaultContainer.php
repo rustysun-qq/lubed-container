@@ -10,6 +10,7 @@ use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
 use TypeError;
+use Lubed\Supports\PSR\Container as ContainerContract;
 
 class DefaultContainer implements ArrayAccess, Container
 {
@@ -259,7 +260,7 @@ class DefaultContainer implements ArrayAccess, Container
         // up inside its own Closure to give us more convenience when extending.
         if (! $concrete instanceof Closure) {
             if (! is_string($concrete)) {
-                throw new TypeError(self::class.'::bind(): Argument #2 ($concrete) must be of type Closure|string|null');
+                Exceptions::TypeError(self::class.'::bind(): Argument #2 ($concrete) must be of type Closure|string|null');
             }
 
             $concrete = $this->getClosure($abstract, $concrete);
@@ -736,9 +737,7 @@ class DefaultContainer implements ArrayAccess, Container
                 throw $e;
             }
 
-            Exceptions::EntryNotFound(sprintf('Entry %s not found.',$id), [
-                'class'=>__CLASS__,'method'=>__METHOD__
-            ], $e);
+            Exceptions::EntryNotFound(sprintf('Entry %s not found.',$id), ['method'=>__METHOD__], $e);
         }
     }
 
@@ -895,7 +894,9 @@ class DefaultContainer implements ArrayAccess, Container
         try {
             $reflector = new ReflectionClass($concrete);
         } catch (ReflectionException $e) {
-            Exceptions::BindingResolution("Target class [$concrete] does not exist.", ,['class'=>__CLASS__,'method'=>__METHOD__], $e);
+            Exceptions::BindingResolution("Target class [$concrete] does not exist.",[
+                'method'=>__METHOD__
+            ], $e);
         }
 
         // If the type is not instantiable, the developer is attempting to resolve
@@ -1107,7 +1108,7 @@ class DefaultContainer implements ArrayAccess, Container
             $message = "Target [$concrete] is not instantiable.";
         }
 
-        throw new BindingResolutionException($message);
+        Exceptions::BindingResolution($message);
     }
 
     /**
@@ -1122,7 +1123,7 @@ class DefaultContainer implements ArrayAccess, Container
     {
         $message = "Unresolvable dependency resolving [$parameter] in class {$parameter->getDeclaringClass()->getName()}";
 
-        throw new BindingResolutionException($message);
+        Exceptions::BindingResolution($message,['method'=>__METHOD__]);
     }
 
     /**

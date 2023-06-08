@@ -3,7 +3,7 @@
 namespace Lubed\Container;
 
 use Closure;
-use Lubed\Supports\ContainerInterface;
+use Lubed\Supports\PSR\ContainerInterface;
 
 interface Container extends ContainerInterface
 {
