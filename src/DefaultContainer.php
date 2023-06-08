@@ -8,7 +8,7 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
-use Lubed\Supports\PSR\ContainerInterface;
+use Lubed\Supports\PSR\ContainerInterface as ContainerContract;
 
 class DefaultContainer implements ArrayAccess, Container
 {
