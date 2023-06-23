@@ -3,6 +3,7 @@
     "description": "The Illuminate Container package.",
     "license": "MIT",
     "homepage": "https://laravel.com",
+    "version": "0.2",
     "support": {
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
@@ -15,9 +16,9 @@
     ],
     "require": {
         "php": ">=8.0",
-        "lubed/utils":"dev-main",
-        "lubed/supports": "dev-main",
-        "lubed/exceptions": "dev-main"
+        "lubed/utils":"0.2",
+        "lubed/supports": "0.2",
+        "lubed/exceptions": "0.2"
     },
     "autoload": {
         "psr-4": {
